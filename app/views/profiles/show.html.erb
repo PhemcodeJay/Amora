@@ -1,0 +1,83 @@
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+  <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+    <!-- Cover Photo -->
+    <div class="h-48 bg-gradient-to-r from-pink-400 to-purple-400"></div>
+    
+    <!-- Profile Header -->
+    <div class="relative px-6 pb-6">
+      <div class="flex flex-col items-center -mt-20">
+        <% if @profile.photo? %>
+          <%= image_tag @profile.photo.url(:medium), class: "w-32 h-32 rounded-full border-4 border-white shadow-lg" %>
+        <% else %>
+          <div class="w-32 h-32 rounded-full border-4 border-white shadow-lg bg-gray-200 flex items-center justify-center">
+            <span class="text-gray-400 text-4xl">📷</span>
+          </div>
+        <% end %>
+        
+        <h1 class="mt-4 text-3xl font-bold"><%= @profile.name %>, <%= @profile.age %></h1>
+        <p class="text-gray-600 flex items-center">
+          <span class="mr-2">📍</span> <%= @profile.location || "Location not set" %>
+        </p>
+      </div>
+      
+      <% if current_user == @profile.user %>
+        <div class="absolute top-4 right-4">
+          <%= link_to "Edit Profile", edit_profile_path(@profile), class: "bg-pink-500 text-white px-4 py-2 rounded-md hover:bg-pink-600" %>
+        </div>
+      <% end %>
+    </div>
+    
+    <!-- Profile Content -->
+    <div class="px-6 pb-6">
+      <!-- Bio -->
+      <div class="mb-6">
+        <h2 class="text-xl font-semibold mb-2">About Me</h2>
+        <p class="text-gray-700"><%= @profile.bio.presence || "No bio provided" %></p>
+      </div>
+      
+      <!-- Interests -->
+      <div class="mb-6">
+        <h2 class="text-xl font-semibold mb-2">Interests</h2>
+        <div class="flex flex-wrap gap-2">
+          <% if @profile.interests.any? %>
+            <% @profile.interests.each do |interest| %>
+              <span class="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">
+                <%= interest.name %>
+              </span>
+            <% end %>
+          <% else %>
+            <p class="text-gray-500">No interests added yet</p>
+          <% end %>
+        </div>
+      </div>
+      
+      <!-- Basic Info -->
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <h3 class="text-sm font-medium text-gray-500">Gender</h3>
+          <p class="text-gray-900 capitalize"><%= @profile.gender || "Not specified" %></p>
+        </div>
+        
+        <div>
+          <h3 class="text-sm font-medium text-gray-500">Looking for</h3>
+          <p class="text-gray-900 capitalize"><%= @profile.looking_for || "Not specified" %></p>
+        </div>
+      </div>
+      
+      <!-- Action Buttons (if viewing another user) -->
+      <% if current_user != @profile.user && !current_user.matched_users.include?(@profile.user) %>
+        <div class="mt-8 flex justify-center space-x-4">
+          <%= button_to likes_path(user_id: @profile.user_id), method: :post, class: "bg-pink-500 text-white px-8 py-3 rounded-full hover:bg-pink-600 flex items-center space-x-2" do %>
+            <span>❤️</span>
+            <span>Like</span>
+          <% end %>
+          
+          <button class="bg-gray-200 text-gray-700 px-8 py-3 rounded-full hover:bg-gray-300 flex items-center space-x-2" onclick="history.back()">
+            <span>←</span>
+            <span>Back</span>
+          </button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

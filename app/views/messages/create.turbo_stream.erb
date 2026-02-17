@@ -1,0 +1,12 @@
+<%= turbo_stream.append "messages" do %>
+  <%= render @message %>
+<% end %>
+
+<%= turbo_stream.replace "message_form" do %>
+  <%= form_with(model: [@match, Message.new], local: false, class: "flex space-x-2") do |f| %>
+    <%= f.text_area :content, rows: 1, class: "flex-1 rounded-lg border-gray-300 focus:ring-pink-500 focus:border-pink-500", placeholder: "Type your message...", autofocus: true %>
+    <%= f.submit "Send", class: "bg-pink-500 text-white px-6 py-2 rounded-lg hover:bg-pink-600" %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.action :scroll, "messages", :bottom %>

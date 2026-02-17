@@ -1,0 +1,86 @@
+<nav class="bg-white shadow-lg">
+  <div class="container mx-auto px-4">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo -->
+      <div class="flex items-center space-x-4">
+        <%= link_to root_path, class: "text-2xl font-bold text-pink-500" do %>
+          DatingApp
+        <% end %>
+      </div>
+      
+      <!-- Main Navigation -->
+      <% if user_signed_in? %>
+        <div class="hidden md:flex items-center space-x-8">
+          <%= link_to "Browse", browse_profiles_path, class: "text-gray-700 hover:text-pink-500 #{'text-pink-500 font-semibold' if current_page?(browse_profiles_path)}" %>
+          <%= link_to "Matches", matches_path, class: "text-gray-700 hover:text-pink-500 #{'text-pink-500 font-semibold' if current_page?(matches_path)}" %>
+        </div>
+      <% end %>
+      
+      <!-- Right Navigation -->
+      <div class="flex items-center space-x-4">
+        <% if user_signed_in? %>
+          <!-- Notifications -->
+          <div class="relative" data-controller="notifications">
+            <button data-action="click->notifications#toggle" class="relative">
+              <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+              </svg>
+              <% if @unread_notifications.any? %>
+                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                  <%= @unread_notifications.count %>
+                </span>
+              <% end %>
+            </button>
+            
+            <!-- Dropdown -->
+            <div data-notifications-target="dropdown" class="hidden absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl z-50">
+              <div class="p-4 border-b">
+                <h3 class="font-semibold">Notifications</h3>
+              </div>
+              <div class="max-h-96 overflow-y-auto">
+                <% if @unread_notifications.any? %>
+                  <% @unread_notifications.each do |notification| %>
+                    <%= render 'notifications/notification', notification: notification %>
+                  <% end %>
+                <% else %>
+                  <p class="text-gray-500 text-center py-4">No new notifications</p>
+                <% end %>
+              </div>
+              <div class="p-4 border-t">
+                <%= link_to "View all", "#", class: "text-sm text-pink-500 hover:text-pink-600" %>
+              </div>
+            </div>
+          </div>
+          
+          <!-- User Menu -->
+          <div class="relative" data-controller="dropdown">
+            <button data-action="click->dropdown#toggle" class="flex items-center space-x-2">
+              <% if current_user.profile.photo? %>
+                <%= image_tag current_user.profile.photo.url(:thumb), class: "w-8 h-8 rounded-full" %>
+              <% else %>
+                <div class="w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center">
+                  <span class="text-pink-500 text-sm"><%= current_user.profile.name.first %></span>
+                </div>
+              <% end %>
+              <span class="text-sm font-medium text-gray-700"><%= current_user.profile.name %></span>
+              <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            
+            <div data-dropdown-target="menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl z-50">
+              <%= link_to "Profile", profile_path(current_user.profile), class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>
+              <%= link_to "Edit Profile", edit_profile_path(current_user.profile), class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>
+              <%= link_to "Account Settings", edit_user_registration_path, class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>
+              <div class="border-t my-1"></div>
+              <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "block w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100" %>
+            </div>
+          </div>
+        <% else %>
+          <%= link_to "Log In", new_user_session_path, class: "text-gray-700 hover:text-pink-500" %>
+          <%= link_to "Sign Up", new_user_registration_path, class: "bg-pink-500 text-white px-4 py-2 rounded-md hover:bg-pink-600" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>

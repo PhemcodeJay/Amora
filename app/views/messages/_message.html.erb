@@ -1,0 +1,13 @@
+<div class="flex <%= message.user == current_user ? 'justify-end' : 'justify-start' %>">
+  <div class="max-w-xs lg:max-w-md <%= message.user == current_user ? 'bg-pink-500 text-white' : 'bg-gray-100 text-gray-800' %> rounded-lg px-4 py-2 shadow">
+    <div class="flex items-center space-x-2 mb-1">
+      <% if message.user != current_user && message.user.profile.photo? %>
+        <%= image_tag message.user.profile.photo.url(:thumb), class: "w-5 h-5 rounded-full" %>
+      <% end %>
+      <span class="text-xs <%= message.user == current_user ? 'text-pink-100' : 'text-gray-500' %>">
+        <%= message.user.profile.name %> • <%= time_ago_in_words(message.created_at) %> ago
+      </span>
+    </div>
+    <p class="text-sm"><%= message.content %></p>
+  </div>
+</div>

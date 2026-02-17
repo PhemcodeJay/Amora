@@ -1,0 +1,24 @@
+<%# app/views/messages/index.html.erb %>
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+  <div class="bg-white rounded-lg shadow overflow-hidden">
+    <!-- Header -->
+    <div class="bg-pink-500 text-white px-6 py-4">
+      <h2 class="text-xl font-semibold">
+        Chat with <%= @match.other_user(current_user).profile.name %>
+      </h2>
+    </div>
+    
+    <!-- Messages -->
+    <div id="messages" class="h-96 overflow-y-auto p-6 space-y-4">
+      <%= render @messages %>
+    </div>
+    
+    <!-- Message Form -->
+    <div class="border-t p-4">
+      <%= form_with(model: [@match, Message.new], local: false, class: "flex space-x-2") do |f| %>
+        <%= f.text_area :content, rows: 1, class: "flex-1 rounded-lg border-gray-300 focus:ring-pink-500 focus:border-pink-500", placeholder: "Type your message..." %>
+        <%= f.submit "Send", class: "bg-pink-500 text-white px-6 py-2 rounded-lg hover:bg-pink-600" %>
+      <% end %>
+    </div>
+  </div>
+</div>

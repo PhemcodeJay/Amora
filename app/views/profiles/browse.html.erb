@@ -1,0 +1,68 @@
+<%# app/views/profiles/browse.html.erb %>
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-3xl font-bold mb-8">Browse Profiles</h1>
+  
+  <!-- Filters -->
+  <div class="bg-white rounded-lg shadow p-6 mb-8">
+    <%= form_tag browse_profiles_path, method: :get, class: "grid grid-cols-1 md:grid-cols-4 gap-4" do %>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Min Age</label>
+        <%= number_field_tag :min_age, params[:min_age], class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm", min: 18, max: 100 %>
+      </div>
+      
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Max Age</label>
+        <%= number_field_tag :max_age, params[:max_age], class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm", min: 18, max: 100 %>
+      </div>
+      
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Looking For</label>
+        <%= select_tag :gender, options_for_select([['All', ''], ['Male', 'male'], ['Female', 'female']], params[:gender]), class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm" %>
+      </div>
+      
+      <div class="flex items-end">
+        <%= submit_tag "Apply Filters", class: "bg-pink-500 text-white px-4 py-2 rounded-md hover:bg-pink-600 w-full" %>
+      </div>
+    <% end %>
+  </div>
+  
+  <!-- Profiles Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <% @profiles.each do |profile| %>
+      <div class="bg-white rounded-lg shadow overflow-hidden">
+        <% if profile.photo? %>
+          <%= image_tag profile.photo.url(:medium), class: "w-full h-64 object-cover" %>
+        <% else %>
+          <div class="w-full h-64 bg-gray-200 flex items-center justify-center">
+            <span class="text-gray-400">No photo</span>
+          </div>
+        <% end %>
+        
+        <div class="p-4">
+          <h3 class="text-xl font-semibold"><%= profile.name %>, <%= profile.age %></h3>
+          <p class="text-gray-600"><%= profile.location %></p>
+          <p class="text-gray-700 mt-2 line-clamp-2"><%= profile.bio %></p>
+          
+          <div class="mt-4">
+            <strong class="text-sm">Interests:</strong>
+            <div class="flex flex-wrap gap-1 mt-1">
+              <% profile.interests.limit(3).each do |interest| %>
+                <span class="bg-pink-100 text-pink-800 text-xs px-2 py-1 rounded"><%= interest.name %></span>
+              <% end %>
+            </div>
+          </div>
+          
+          <div class="mt-4 flex justify-between">
+            <%= button_to "Like", likes_path(user_id: profile.user_id), method: :post, class: "bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600", data: { turbo_method: :post } %>
+            <%= link_to "View Profile", profile_path(profile), class: "text-pink-500 hover:text-pink-600 px-4 py-2" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  
+  <!-- Pagination -->
+  <div class="mt-8">
+    <%= paginate @profiles %>
+  </div>
+</div>
