@@ -68,7 +68,7 @@ group :test do
 end
 # Gemfile
 gem 'devise'
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '~> 3.1'
 gem 'mini_magick'
 gem 'fog-aws' # for production storage
 gem 'redis', '~> 4.0' # for ActionCable
