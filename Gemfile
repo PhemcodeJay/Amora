@@ -4,9 +4,8 @@ source "https://rubygems.org"
 gem "rails", "~> 8.1.2"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
-# Use postgresql as the database for Active Record
-# gem "pg", "~> 1.1"
-gem 'sqlite3', '~> 1.4'
+# Use sqlite3 as the database for Active Record (temporary until PostgreSQL works)
+gem "sqlite3", "~> 1.4"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
@@ -43,6 +42,55 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
 
+# Authentication
+gem 'devise'
+
+# File Upload - Using ActiveStorage instead of CarrierWave (to avoid mimemagic issues)
+# gem 'carrierwave', '~> 2.0'  # Temporarily disabled due to mimemagic dependency
+# gem 'mimemagic', '~> 0.3.10' # Temporarily disabled
+
+# Image processing
+gem 'mini_magick'
+
+# For production storage (AWS S3)
+gem 'fog-aws'
+
+# Real-time features
+gem 'redis', '~> 4.0'
+gem 'redis-rails'
+
+# Background jobs
+gem 'sidekiq'
+
+# Authorization
+gem 'pundit'
+
+# Location-based features
+gem 'geocoder'
+
+# Advanced searching/filtering
+gem 'ransack'
+
+# Fake data generation
+gem 'faker'
+
+# Frontend styling and JavaScript
+gem 'bootstrap', '~> 5.0'
+gem 'jquery-rails'
+gem 'font-awesome-sass', '~> 5.15'
+
+# API CORS handling
+gem 'rack-cors'
+
+# Third-party authentication
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-twitter'
+
+# Force older psych version for compatibility
+gem 'psych', '< 5.0.0'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -67,25 +115,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-# Gemfile
-gem 'devise'
-# gem 'mimemagic', '~> 0.3.10'
-# gem 'carrierwave', '~> 2.0'
-gem 'psych', '< 5.0.0'
-gem 'mini_magick'
-gem 'fog-aws' # for production storage
-gem 'redis', '~> 4.0' # for ActionCable
-gem 'pundit' # for authorization
-gem 'geocoder' # for location-based features
-gem 'sidekiq' # for background jobs
-gem 'ransack' # for advanced searching/filtering
-gem 'faker' # for generating fake data in seeds and tests
-gem 'bootstrap', '~> 5.0' # for styling
-gem 'jquery-rails' # for JavaScript functionality
-gem 'font-awesome-sass', '~> 5.15' # for icons
-gem 'redis-rails' # for caching and session storage
-gem 'rack-cors' # for handling Cross-Origin Resource Sharing (CORS)
-gem 'omniauth' # for third-party authentication
-gem 'omniauth-facebook' # for Facebook authentication
-gem 'omniauth-google-oauth2' # for Google authentication
-gem 'omniauth-twitter' # for Twitter authentication
+
+# PostgreSQL (commented out - uncomment when ready to switch from SQLite3)
+# gem "pg", "~> 1.1"
