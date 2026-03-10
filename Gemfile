@@ -1,5 +1,9 @@
 source "https://rubygems.org"
 
+gem 'public_suffix', '~> 5.1.0'
+gem 'capybara', '~> 3.40.0'
+gem 'addressable', '~> 2.8.0'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.1.2"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
