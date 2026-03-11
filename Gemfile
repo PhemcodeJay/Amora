@@ -81,7 +81,7 @@ gem 'faker' # rubocop:disable Style/StringLiterals
 # Frontend styling and JavaScript
 gem 'bootstrap', '~> 5.0' # rubocop:disable Style/StringLiterals
 gem 'jquery-rails' # rubocop:disable Style/StringLiterals
-gem 'font-awesome-sass', '~> 5.15' # rubocop:disable Style/StringLiterals
+gem 'font-awesome-sass', '~> 6.7' # rubocop:disable Style/StringLiterals
 
 # API CORS handling
 gem 'rack-cors' # rubocop:disable Style/StringLiterals
