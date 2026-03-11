@@ -61,7 +61,7 @@ gem 'mini_magick' # rubocop:disable Style/StringLiterals
 gem "fog-aws"
 
 # Real-time features
-gem 'redis', "~> 4.0" # rubocop:disable Style/StringLiterals
+gem 'redis', "~> 5.4" # rubocop:disable Style/StringLiterals
 
 # Background jobs
 gem 'sidekiq' # rubocop:disable Style/StringLiterals
