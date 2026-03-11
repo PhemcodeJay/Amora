@@ -153,8 +153,8 @@ GEM
     fog-xml (0.1.5)
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
-    font-awesome-sass (5.15.1)
-      sassc (>= 1.11)
+    font-awesome-sass (6.7.2)
+      sassc (~> 2.0)
     formatador (1.2.3)
       reline
     fugit (1.12.1)
@@ -574,7 +574,7 @@ DEPENDENCIES
   devise
   faker
   fog-aws
-  font-awesome-sass (~> 5.15)
+  font-awesome-sass (~> 6.7)
   geocoder
   image_processing (~> 1.2)
   importmap-rails
@@ -665,7 +665,7 @@ CHECKSUMS
   fog-core (2.6.0) sha256=3fe08aa83a23cddce42f4ba412040c08f890d7ff04c175c0ee59119371245be6
   fog-json (1.2.0) sha256=dd4f5ab362dbc72b687240bba9d2dd841d5dfe888a285797533f85c03ea548fe
   fog-xml (0.1.5) sha256=52b9fea10701461dd3eaf9d9839702169b418dbbf50426786b9b74fade373bd6
-  font-awesome-sass (5.15.1) sha256=3ddcb5cf7e4d77d080535de69df747c59fc53956e2bdac43115271beff5e263e
+  font-awesome-sass (6.7.2) sha256=31cf171c593cda4118bf5efbf9e4eb6abc8b15fd4d6acd5f000026356ee0005d
   formatador (1.2.3) sha256=19fa898133c2c26cdbb5d09f6998c1e137ad9427a046663e55adfe18b950d894
   fugit (1.12.1) sha256=5898f478ede9b415f0804e42b8f3fd53f814bd85eebffceebdbc34e1107aaf68
   geocoder (1.8.6) sha256=e0ca1554b499f466de9b003f7dff70f89a5888761c2ca68ed9f86b6e5e24e74c
