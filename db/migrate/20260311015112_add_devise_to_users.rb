@@ -97,7 +97,6 @@ class AddDeviseToUsers < ActiveRecord::Migration[8.1]
         :confirmation_sent_at, :unconfirmed_email, :failed_attempts, :unlock_token,
         :locked_at
       ]
-      
       columns_to_remove.each do |column|
         remove_column :users, column if column_exists?(:users, column)
       end

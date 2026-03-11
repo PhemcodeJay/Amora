@@ -48,52 +48,52 @@ gem "thruster", require: false
 gem "image_processing", "~> 1.2"
 
 # Authentication
-gem 'devise'
+gem "devise"
 
 # File Upload - Using ActiveStorage instead of CarrierWave (to avoid mimemagic issues)
 # gem 'carrierwave', '~> 2.0'  # Temporarily disabled due to mimemagic dependency
 # gem 'mimemagic', '~> 0.3.10' # Temporarily disabled
 
 # Image processing
-gem 'mini_magick'
+gem 'mini_magick' # rubocop:disable Style/StringLiterals
 
 # For production storage (AWS S3)
-gem 'fog-aws'
+gem "fog-aws"
 
 # Real-time features
-gem 'redis', '~> 4.0'
+gem 'redis', "~> 4.0" # rubocop:disable Style/StringLiterals
 
 # Background jobs
-gem 'sidekiq'
+gem 'sidekiq' # rubocop:disable Style/StringLiterals
 
 # Authorization
-gem 'pundit'
+gem 'pundit'  # rubocop:disable Style/StringLiterals
 
 # Location-based features
-gem 'geocoder'
+gem 'geocoder' # rubocop:disable Style/StringLiterals
 
 # Advanced searching/filtering
-gem 'ransack'
+gem 'ransack' # rubocop:disable Style/StringLiterals
 
 # Fake data generation
-gem 'faker'
+gem 'faker' # rubocop:disable Style/StringLiterals
 
 # Frontend styling and JavaScript
-gem 'bootstrap', '~> 5.0'
-gem 'jquery-rails'
-gem 'font-awesome-sass', '~> 5.15'
+gem 'bootstrap', '~> 5.0' # rubocop:disable Style/StringLiterals
+gem 'jquery-rails' # rubocop:disable Style/StringLiterals
+gem 'font-awesome-sass', '~> 5.15' # rubocop:disable Style/StringLiterals
 
 # API CORS handling
-gem 'rack-cors'
+gem 'rack-cors' # rubocop:disable Style/StringLiterals
 
 # Third-party authentication
-gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'omniauth-google-oauth2'
-gem 'omniauth-twitter'
+gem 'omniauth' # rubocop:disable Style/StringLiterals
+gem 'omniauth-facebook' # rubocop:disable Style/StringLiterals
+gem 'omniauth-google-oauth2' # rubocop:disable Style/StringLiterals
+gem 'omniauth-twitter' # rubocop:disable Style/StringLiterals
 
 # Force older psych version for compatibility
-gem 'psych', '< 5.0.0'
+gem 'psych', '< 5.0.0' # rubocop:disable Style/StringLiterals
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

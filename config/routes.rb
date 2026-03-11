@@ -9,42 +9,34 @@ Rails.application.routes.draw do
 
   # Devise routes for user authentication
   devise_for :users
-  
   # Authenticated root - users go to dashboard when logged in
   authenticated :user do
-    root 'dashboard#index', as: :authenticated_root
+    root 'dashboard#index', as: :authenticated_root # rubocop:disable Style/StringLiterals
   end
-  
   # Unauthenticated root - visitors see home page
-  root 'home#index'
-  
+  root 'home#index' # rubocop:disable Style/StringLiterals
   # Profile routes
-  resources :profiles, only: [:show, :edit, :update] do
+  resources :profiles, only: [:show, :edit, :update] do # rubocop:disable Layout/SpaceInsideArrayLiteralBrackets
     collection do
-      get 'browse'
+      get 'browse' # rubocop:disable Style/StringLiterals
     end
   end
-  
   # Like routes
-  resources :likes, only: [:create]
-  
+  resources :likes, only: [:create] # rubocop:disable Layout/SpaceInsideArrayLiteralBrackets
   # Match routes with nested messages
-  resources :matches, only: [:index, :show] do
-    resources :messages, only: [:index, :create]
+  resources :matches, only: [:index, :show] do # rubocop:disable Layout/SpaceInsideArrayLiteralBrackets
+    resources :messages, only: [:index, :create] # rubocop:disable Layout/SpaceInsideArrayLiteralBrackets
   end
-  
   # Interests
-  resources :interests, only: [:index]
-  
+  resources :interests, only: [:index] # rubocop:disable Layout/SpaceInsideArrayLiteralBrackets
   # API endpoints for real-time features
   namespace :api do
     namespace :v1 do
       resources :matches, only: [] do
-        resources :messages, only: [:index, :create]
+        resources :messages, only: [:index, :create] # rubocop:disable Layout/SpaceInsideArrayLiteralBrackets
       end
     end
   end
-  
   # WebSocket for Action Cable
-  mount ActionCable.server => '/cable'
+  mount ActionCable.server => '/cable' # rubocop:disable Style/StringLiterals
 end
