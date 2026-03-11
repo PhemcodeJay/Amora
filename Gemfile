@@ -1,8 +1,9 @@
 source "https://rubygems.org"
 
 gem 'public_suffix', '~> 5.1.0'
-gem 'capybara', '~> 3.40.0'
 gem 'addressable', '~> 2.8.0'
+# gem "capybara"
+# gem "selenium-webdriver"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.1.2"
@@ -114,11 +115,6 @@ group :development do
   gem "web-console"
 end
 
-group :test do
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
-end
 
 # PostgreSQL (commented out - uncomment when ready to switch from SQLite3)
 # gem "pg", "~> 1.1"
