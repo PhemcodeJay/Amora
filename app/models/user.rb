@@ -1,5 +1,7 @@
 # app/models/user.rb
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :trackable, :confirmable
@@ -54,8 +56,8 @@ class User < ApplicationRecord
     )
     
     # Create notification for both users
-    Notification.create(user: self, content: "You matched with #{other_user.profile.name}!", notification_type: 'match')
-    Notification.create(user: other_user, content: "You matched with #{profile.name}!", notification_type: 'match')
+    Notification.create(user: self, content: "You matched with #{other_user.profile&.name || 'someone'}!", notification_type: 'match')
+    Notification.create(user: other_user, content: "You matched with #{profile&.name || 'someone'}!", notification_type: 'match')
     
     match
   end

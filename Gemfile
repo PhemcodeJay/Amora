@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
-gem 'public_suffix', '~> 5.1.0'
-gem 'addressable', '~> 2.8.0'
+gem "public_suffix", "~> 5.1.0"
+gem "addressable", "~> 2.8.0"
 # gem "capybara"
 # gem "selenium-webdriver"
 
@@ -10,7 +10,7 @@ gem "rails", "~> 8.1.2"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use sqlite3 as the database for Active Record (temporary until PostgreSQL works)
-gem "sqlite3", "~> 1.4"
+gem "sqlite3", ">= 2.1"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
@@ -62,7 +62,6 @@ gem 'fog-aws'
 
 # Real-time features
 gem 'redis', '~> 4.0'
-gem 'redis-rails'
 
 # Background jobs
 gem 'sidekiq'
@@ -118,3 +117,5 @@ end
 
 # PostgreSQL (commented out - uncomment when ready to switch from SQLite3)
 # gem "pg", "~> 1.1"
+
+gem "dartsass-rails", "~> 0.5.1"
