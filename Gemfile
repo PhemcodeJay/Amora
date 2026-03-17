@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "public_suffix", "~> 5.1.0"
+gem "public_suffix", "~> 7.0.5"
 gem "addressable", "~> 2.8.0"
 # gem "capybara"
 # gem "selenium-webdriver"
