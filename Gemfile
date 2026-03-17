@@ -93,7 +93,7 @@ gem 'omniauth-google-oauth2' # rubocop:disable Style/StringLiterals
 gem 'omniauth-twitter' # rubocop:disable Style/StringLiterals
 
 # Force older psych version for compatibility
-gem 'psych', '< 5.0.0' # rubocop:disable Style/StringLiterals
+gem 'psych', '< 6.0.0' # rubocop:disable Style/StringLiterals
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
